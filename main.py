@@ -3,6 +3,7 @@ import sys
 import pygame
 
 from settings import Settings
+from whitekeys import Whitekey
 
 
 class PyPiano:
@@ -19,6 +20,7 @@ class PyPiano:
         )
 
         pygame.display.set_caption("pyPiano")
+        self.whitekey = Whitekey(self)
 
     def main_loop(self):
 
@@ -28,10 +30,12 @@ class PyPiano:
 
             self._draw_screen()
 
+
+
     def _draw_screen(self):
         # redraw screen during each pass through the loop.
         self.screen.fill(self.settings.bg_color)
-
+        self.whitekey.draw_key()
         pygame.display.flip()
 
     def _event_handler(self):
