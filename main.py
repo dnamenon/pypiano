@@ -54,7 +54,7 @@ class PyPiano:
         count = 0
 
         for key in self.whitekeys:
-            key.draw_key(count*34)
+            key.draw_key(count*35)
             count +=1
 
 
