@@ -1,16 +1,16 @@
 import pygame
 
 
-class Whitekey:
+class Black_Key:
 
     def __init__(self,piano):
         self.screen = piano.screen
         self.sets = piano.settings
 
-        self.color = self.sets.whitekey_color
+        self.color = self.sets.black_key_color
 
-        self.rect = pygame.Rect(93,150, self.sets.whitekey_width,self.sets.whitekey_height)
-        self.border = pygame.Rect(93,150,self.sets.whitekey_width,self.sets.whitekey_height)
+        self.rect = pygame.Rect(0,150, self.sets.whitekey_width,self.sets.whitekey_height)
+        self.border = pygame.Rect(0,150,self.sets.whitekey_width,self.sets.whitekey_height)
         self.border_color = self.sets.key_border_color
 
     def draw_key(self,x):

@@ -3,7 +3,7 @@ import sys
 import pygame
 
 from settings import Settings
-from whitekeys import Whitekey
+from white_keys import White_Key
 
 
 class PyPiano:
@@ -23,10 +23,10 @@ class PyPiano:
         pygame.display.set_caption("pyPiano")
 
 
-        self.whitekeys = []
-        self._make_keys(self.whitekeys)
+        self.white_keys = []
+        self._make_keys(self.white_keys)
         self.screen.fill(self.settings.bg_color)
-        self._draw_whitekeys()
+        self._draw_white_keys()
         pygame.display.flip()
 
 
@@ -48,12 +48,12 @@ class PyPiano:
 
     def _make_keys(self,listofkeys):
         for value in range(0,29):
-            listofkeys.append(Whitekey(self))
+            listofkeys.append(White_Key(self))
 
-    def _draw_whitekeys(self):
+    def _draw_white_keys(self):
         count = 0
 
-        for key in self.whitekeys:
+        for key in self.white_keys:
             key.draw_key(count*35)
             count +=1
 
