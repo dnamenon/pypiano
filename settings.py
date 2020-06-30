@@ -8,9 +8,11 @@ class Settings:
     def __init__(self):
         self.screen_width = 1200
         self.screen_height = 600
-        self.bg_color = (0, 0, 0)
+        self.bg_color = (135, 206, 235)
 
 
         self.whitekey_color = pygame.Color(255,255,255)
         self.whitekey_width = 34
         self.whitekey_height = 450
+
+        self.key_border_color = pygame.Color(0,0,0)

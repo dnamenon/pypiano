@@ -19,8 +19,16 @@ class PyPiano:
             (self.settings.screen_width, self.settings.screen_height)
         )
 
+
         pygame.display.set_caption("pyPiano")
-        self.whitekey = Whitekey(self)
+
+
+        self.whitekeys = []
+        self._make_keys(self.whitekeys)
+        self.screen.fill(self.settings.bg_color)
+        self._draw_whitekeys()
+        pygame.display.flip()
+
 
     def main_loop(self):
 
@@ -28,21 +36,27 @@ class PyPiano:
 
             self._event_handler()
 
-            self._draw_screen()
 
 
 
-    def _draw_screen(self):
-        # redraw screen during each pass through the loop.
-        self.screen.fill(self.settings.bg_color)
-        self.whitekey.draw_key()
-        pygame.display.flip()
 
     def _event_handler(self):
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+
+    def _make_keys(self,listofkeys):
+        for value in range(0,29):
+            listofkeys.append(Whitekey(self))
+
+    def _draw_whitekeys(self):
+        count = 0
+
+        for key in self.whitekeys:
+            key.draw_key(count*34)
+            count +=1
+
 
 if __name__ == '__main__':
     piano = PyPiano()
