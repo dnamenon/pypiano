@@ -18,9 +18,9 @@ class Black_Key:
         a = c2 % 2
         if a == 0:
              a = 2
-        self.rect.x = 93 + (2*a*x) + (octave*c1)
+        self.rect.x = 93 + (2*a*x) + (octave*c1) - x
         self.border.x = self.rect.x
-        self.rect.y = 150
+        self.rect.y =150
         self.border.y = self.rect.y
         pygame.draw.rect(self.screen, self.color, self.rect)
         pygame.draw.rect(self.screen, self.border_color, self.border, width=1)
@@ -32,7 +32,7 @@ class Black_Key:
         a = c2 % 3
         if a == 0:
              a = 3
-        self.rect.x = 233 + (2 * a * x) + (octave * c1)
+        self.rect.x = 198 + (2 * a * x) + (octave * c1) - x
         self.border.x = self.rect.x
         self.rect.y =150
         self.border.y = self.rect. y

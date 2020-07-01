@@ -71,29 +71,36 @@ class PyPiano:
                 key.draw_key((count)*35)
                 pygame.display.flip()
                 count +=1
+        count = 0
 
-            elif count%7 <=3 and type(key) is Black_Key:
+        for key in self.keys:
+
+            if count%7 <=3 and type(key) is Black_Key:
 
                 self._draw_black_keys_1(count,count2,key)
-
+                print(key)
                 count2 +=1
             elif count%7 > 3 and type(key) is Black_Key:
 
                 self._draw_black_keys_2(count,count3,key)
 
                 count3 += 1
+            else:
+                count += 1
+                print(count)
+
 
 
 
     def _draw_black_keys_1(self,num1,num2,key):
         count1 = num1//7
-        print(count1)
+
         key.draw_key_1(21,count1,num2)
 
 
     def _draw_black_keys_2(self,num1,num2,key):
         count1 = num1 // 7
-        print(num2)
+
         key.draw_key_2(20, count1, num2)
 
 
