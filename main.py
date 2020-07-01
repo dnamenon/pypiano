@@ -1,10 +1,13 @@
 import sys
 
 import pygame
+import mido
+from mido import messages
 
 from settings import Settings
 from white_keys import White_Key
 from black_keys import Black_Key
+
 
 
 class PyPiano:
@@ -24,9 +27,12 @@ class PyPiano:
         pygame.display.set_caption("pyPiano")
 
 
+        self.midi_in = mido.open_input('Launchkey MK2 49 Launchkey MIDI')
+
+
         self.keys = []
         self._make_keys(self.keys)
-        print(self.keys)
+
         self.screen.fill(self.settings.bg_color)
         self._draw_keys()
         pygame.display.flip()
@@ -36,7 +42,11 @@ class PyPiano:
 
         while True:
 
+            self._midi_handler()
+
             self._event_handler()
+
+
 
 
 
@@ -46,6 +56,7 @@ class PyPiano:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                del self.midi_in
                 sys.exit()
 
     def _make_keys(self,listofkeys):
@@ -78,7 +89,7 @@ class PyPiano:
             if count%7 <=3 and type(key) is Black_Key:
 
                 self._draw_black_keys_1(count,count2,key)
-                print(key)
+
                 count2 +=1
             elif count%7 > 3 and type(key) is Black_Key:
 
@@ -87,7 +98,7 @@ class PyPiano:
                 count3 += 1
             else:
                 count += 1
-                print(count)
+
 
 
 
@@ -102,6 +113,12 @@ class PyPiano:
         count1 = num1 // 7
 
         key.draw_key_2(20, count1, num2)
+
+
+    def _midi_handler(self):
+
+
+        print(self.midi_in.receive())
 
 
 
