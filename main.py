@@ -3,6 +3,7 @@ import sys
 import pygame
 import mido
 from mido import messages
+import rtmidi
 
 from settings import Settings
 from white_keys import White_Key
@@ -26,12 +27,19 @@ class PyPiano:
 
         pygame.display.set_caption("pyPiano")
 
+        self.rt = rtmidi.MidiIn()
 
-        self.midi_in = mido.open_input('Launchkey MK2 49 Launchkey MIDI')
+        if self.rt.get_port_count() != 0:
+            self.midi_in = mido.open_input('Launchkey MK2 49 Launchkey MIDI')
+        else:
+            self.midi_in = mido.open_input('keyboard', virtual=True)
 
 
         self.keys = []
         self._make_keys(self.keys)
+
+        self.key_midi = {}
+        self._keystomidi(self.key_midi)
 
         self.screen.fill(self.settings.bg_color)
         self._draw_keys()
@@ -114,11 +122,39 @@ class PyPiano:
 
         key.draw_key_2(20, count1, num2)
 
+    def _keystomidi(self, dict ):
+        midivalues = []
+        for i in range(24,73):
+            midivalues.append(i)
+
+        dict = {self.keys[j] : midivalues for j in range(len(self.keys))}
+
+
 
     def _midi_handler(self):
 
+        if self.rt.get_port_count() > 0:
+            if self.midi_in.name == "keyboard":
+                self.midi_in.close()
+                self.midi_in = mido.open_input('Launchkey MK2 49 Launchkey MIDI')
+                print(self.midi_in.name)
 
-        print(self.midi_in.receive())
+            else:
+                self.midi_in.receive(block=False)
+        elif self.midi_in.closed:
+            self.midi_in = mido.open_input('keyboard', virtual=True)
+            self.midi_in.receive(block=False))
+
+        else:
+            self.midi_in.receive(block=False))
+
+
+
+
+
+
+
+
 
 
 
