@@ -13,6 +13,8 @@ class Black_Key:
         self.border = pygame.Rect(0,0,self.sets.black_key_width,self.sets.black_key_height)
         self.border_color = self.sets.key_border_color
 
+        self.note_value = ''
+
     def draw_key_1(self,x,c1, c2):
         octave = 35*7
         a = c2 % 2
@@ -39,3 +41,6 @@ class Black_Key:
 
         pygame.draw.rect(self.screen, self.color, self.rect)
         pygame.draw.rect(self.screen, self.border_color, self.border, width=1)
+
+    def assign_note_value(self,x):
+        self.note_value = x
