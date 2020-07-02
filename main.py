@@ -140,7 +140,7 @@ class PyPiano:
                 print(self.midi_in.name)
 
             else:
-                self.midi_in.receive(block=False)
+                self.midi_open in.receive(block=False)
         elif self.midi_in.closed:
             self.midi_in = mido.open_input('keyboard', virtual=True)
             self.midi_in.receive(block=False))
