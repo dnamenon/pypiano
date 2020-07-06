@@ -1,6 +1,8 @@
 import sys
 
-import pygame
+
+import tkinter
+from tkinter import *
 import mido
 from mido import messages
 import rtmidi
@@ -22,17 +24,18 @@ class PyPiano:
 
     def __init__(self):
 
-        pygame.init()
+
+
+        gui = tkinter.Tk()
         tracemalloc.start()
 
         self.settings = Settings()
 
-        self.screen = pygame.display.set_mode(
-            (self.settings.screen_width, self.settings.screen_height)
-        )
+        self.screen = Canvas(gui, width=self.settings.screen_width, height=self.settings.screen_height, bg =self.settings.bg_color)
+
+        self.screen.pack()
 
 
-        pygame.display.set_caption("pyPiano")
 
         self.rt = rtmidi.MidiIn()
 
@@ -52,18 +55,16 @@ class PyPiano:
         self._keystomidi()
 
 
-        self.screen.fill(self.settings.bg_color)
         self._draw_keys()
-        pygame.display.flip()
+
+        gui.mainloop()
 
 
-    def main_loop(self):
+    def main(self):
+        self._midi_handler()
 
-        while True:
 
-            self._midi_handler()
 
-            self._event_handler()
 
 
     def _event_handler(self):
@@ -94,7 +95,6 @@ class PyPiano:
         for key in self.keys:
             if type(key) is White_Key:
                 key.draw_key((count)*35)
-                pygame.display.flip()
                 count +=1
         count = 0
 
@@ -194,4 +194,4 @@ class PyPiano:
 
 if __name__ == '__main__':
     piano = PyPiano()
-    piano.main_loop()
+    piano.main()

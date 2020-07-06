@@ -1,4 +1,3 @@
-import pygame
 
 
 class White_Key:
@@ -9,20 +8,25 @@ class White_Key:
 
         self.color = self.sets.white_key_color
 
-        self.rect = pygame.Rect(0,0, self.sets.white_key_width,self.sets.white_key_height)
-        self.border = pygame.Rect(0,0,self.sets.white_key_width,self.sets.white_key_height)
-        self.border_color = self.sets.key_border_color
+
+        self.x = 0
+        self.y = 0
+        self.x1= 0
+        self.y1 =0
+
 
         self.note_value = ''
 
     def draw_key(self,x):
-        self.rect.x = self.sets.leftrightend+x
-        self.border.x = self.sets.leftrightend+x
-        self.rect.y = self.sets.topend
-        self.border.y = self.sets.topend
+        self.x = self.sets.leftrightend+x
+        self.x1 = self.sets.white_key_width+self.x
 
-        pygame.draw.rect(self.screen,self.color,self.rect)
-        pygame.draw.rect(self.screen,self.border_color,self.border,width=1)
+        self.y = self.sets.topend
+        self.y1 = self.y + self.sets.white_key_height
+
+
+
+        self.screen.create_rectangle(self.x,self.y,self.x1,self.y1,fill=self.color)
 
     def assign_note_value(self, x):
         self.note_value = x
