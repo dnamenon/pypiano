@@ -32,7 +32,7 @@ class PyPiano:
         self.settings = Settings()
 
         self.screen = Canvas(gui, width=self.settings.screen_width, height=self.settings.screen_height, bg =self.settings.bg_color)
-
+        self.screen.config(scrollregion=self.screen.bbox(ALL))
         self.screen.pack()
 
 
@@ -121,10 +121,12 @@ class PyPiano:
         key.draw_key_1(21,count1,num2)
 
 
+
     def _draw_black_keys_2(self,num1,num2,key):
         count1 = num1 // 7
 
         key.draw_key_2(20, count1, num2)
+
 
     def _keystomidi(self):
         midivalues = []

@@ -1,4 +1,4 @@
-
+import tkinter
 
 
 class Black_Key:
@@ -24,14 +24,15 @@ class Black_Key:
         if a == 0:
              a = 2
         self.x = 93 + (2*a*x) + (octave*c1) - x
-        self.x1 = self.sets.black_key_width + x
+        self.x1 = self.sets.black_key_width + self.x
 
         self.y =150
-        self.y = self.sets.black_key_height + self.y
+        self.y1 = self.sets.black_key_height + self.y
 
 
 
         self.rect = self.screen.create_rectangle(self.x,self.y,self.x1,self.y1, fill=self.sets.black_key_color)
+
 
 
 
@@ -42,13 +43,14 @@ class Black_Key:
         if a == 0:
              a = 3
         self.x = 198 + (2 * a * x) + (octave * c1) - x
-        self.x1 = self.sets.black_key_width + x
+        self.x1 = self.sets.black_key_width + self.x
 
         self.y =150
-        self.y = self.sets.black_key_height + self.y
+        self.y1 = self.sets.black_key_height + self.y
 
 
-        self.rect = self.screen.create_rectangle(self.x,self.y,self.x1,self.y1, fill=self.sets.black_key_color)
+        self.rect = self.screen.create_rectangle(self.x,self.y,self.x1,self.y1, fill=self.sets.black_key_color,)
+
 
 
     def assign_note_value(self,x):
